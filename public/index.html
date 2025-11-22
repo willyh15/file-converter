@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GhostConvert · Fast File Converters</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <main>
+    <header class="header">
+      <div class="logo">
+        GHOST<span>CONVERT</span>
+      </div>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>Fast · Free · No login</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1 class="hero-title">Convert files in seconds, not minutes.</h1>
+      <p class="hero-subtitle">
+        PNG ↔ JPG, MP4 ↔ MP3, PDFs and more. No registration, no watermarks, no BS.
+      </p>
+      <div class="hero-actions">
+        <button id="hero-primary-btn" class="hero-btn-primary">
+          Start with PNG → JPG
+        </button>
+        <button class="hero-btn-secondary" onclick="document.getElementById('tools').scrollIntoView({behavior: 'smooth'})">
+          Browse all tools
+        </button>
+      </div>
+    </section>
+
+    <section id="tools" class="tools-section">
+      <div class="tools-grid-title">
+        <h2 style="font-size: 1rem; margin: 0;">Popular converters</h2>
+        <span style="font-size: 0.8rem; color: #9ca3af;">More tools coming soon</span>
+      </div>
+      <div class="tools-grid">
+        <a href="/tools/png-to-jpg.html" class="tool-card">
+          <div class="tool-name">PNG → JPG</div>
+          <div class="tool-meta">Optimize photos, thumbnails, previews</div>
+        </a>
+        <a href="/tools/mp4-to-mp3.html" class="tool-card">
+          <div class="tool-name">MP4 → MP3</div>
+          <div class="tool-meta">Extract audio from videos</div>
+        </a>
+        <!-- Add more as you build them -->
+      </div>
+    </section>
+
+    <footer class="footer">
+      Files are processed securely and automatically deleted after a short period.
+      This is a starter build — customize, extend, and ship.
+    </footer>
+  </main>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>
