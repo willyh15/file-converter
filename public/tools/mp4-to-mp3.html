@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MP4 to MP3 Converter · GhostConvert</title>
+  <meta name="description" content="Convert MP4 video files to MP3 audio. Fast, free, no login." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <main class="tool-wrapper">
+    <header class="header">
+      <a href="/" class="logo">
+        GHOST<span>CONVERT</span>
+      </a>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>MP4 → MP3</span>
+      </div>
+    </header>
+
+    <section class="tool-header">
+      <h1 class="tool-title">MP4 to MP3 Converter</h1>
+      <p class="tool-subtitle">
+        Extract high-quality audio from MP4 video files. Perfect for podcasts, voice notes, lectures, and music.
+      </p>
+    </section>
+
+    <section class="tool-card-main">
+      <div id="upload-area" class="upload-area">
+        <div class="upload-text">
+          <strong>Drop an MP4 file here</strong><br />
+          or click to browse from your device.
+        </div>
+        <div id="file-name" class="file-name"></div>
+        <input id="file-input" type="file" accept=".mp4,video/mp4" style="display:none" />
+      </div>
+
+      <div class="tool-actions">
+        <button id="convert-btn" class="btn btn-primary">
+          Convert to MP3
+        </button>
+        <span id="status-text" class="status-text">Select or drop an MP4 to get started.</span>
+      </div>
+
+      <div class="progress">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      MP3s are encoded via ffmpeg using the LAME encoder at high quality (VBR).
+    </footer>
+  </main>
+
+  <script src="/assets/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      handleToolPage({
+        tool: "audio:mp4-to-mp3",
+      });
+    });
+  </script>
+</body>
+</html>
