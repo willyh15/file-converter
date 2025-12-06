@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Starter file conversion website with queue-based backend",
   "main": "src/server.js",
+  "type": "module",
   "scripts": {
     "dev": "NODE_ENV=development node src/server.js",
     "start": "NODE_ENV=production node src/server.js",
@@ -16,7 +17,7 @@
     "ioredis": "^5.4.1",
     "mime-types": "^2.1.35",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
+    "multer": "^2.0.2",
     "uuid": "^9.0.1"
   }
 }

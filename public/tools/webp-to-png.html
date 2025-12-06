@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WEBP to PNG Converter - GhostConvert</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Convert WEBP images to PNG online with GhostConvert. Free WEBP to PNG converter for logos, graphics, and transparency."
+  />
+  <link rel="canonical" href="https://ghostconvert.dev/tools/webp-to-png.html" />
+  <link rel="stylesheet" href="/assets/style.css" />
+
+  <!-- Google AdSense verification script -->
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1893531898786623"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="WEBP to PNG Converter - GhostConvert" />
+  <meta
+    property="og:description"
+    content="Make WEBP images compatible everywhere by converting them to PNG. Keep transparency for logos and graphics."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ghostconvert.dev/tools/webp-to-png.html" />
+  <meta property="og:site_name" content="GhostConvert" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WEBP to PNG Converter - GhostConvert" />
+  <meta
+    name="twitter:description"
+    content="Free online WEBP to PNG converter. Preserve transparency for logos, icons, and UI graphics."
+  />
+</head>
+<body>
+  <main>
+    <!-- HEADER: same as index -->
+    <header class="header">
+      <a href="/" class="logo">
+        GHOST<span>CONVERT</span>
+      </a>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>Fast · Free · No login</span>
+      </div>
+    </header>
+
+    <section class="tool-hero">
+      <h1 class="hero-title">WEBP to PNG Converter</h1>
+      <p class="hero-subtitle">
+        Convert WEBP images into PNG for better compatibility with older tools
+        while keeping transparency for logos, icons, and UI elements.
+      </p>
+    </section>
+
+    <section class="tool-section">
+      <div class="upload-card">
+        <div id="upload-area" class="upload-area">
+          <p class="upload-title">Drop a WEBP file here</p>
+          <p class="upload-subtitle">or click to browse from your device.</p>
+          <input
+            id="file-input"
+            type="file"
+            accept="image/webp"
+            hidden
+          />
+          <div id="file-name" class="file-name"></div>
+        </div>
+
+        <div class="upload-actions">
+          <button id="convert-btn" class="primary-btn">
+            Convert to PNG
+          </button>
+          <div id="status-text" class="status-text"></div>
+        </div>
+
+        <div class="progress-track">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="tool-sidebar">
+        <h2>Why convert WEBP to PNG?</h2>
+        <ul>
+          <li>Use WEBP images in apps that do not support WEBP yet.</li>
+          <li>Keep transparent backgrounds for logos and UI graphics.</li>
+          <li>Prepare assets for design tools or older CMS platforms.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="/assets/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      handleToolPage({
+        tool: "image:webp-to-png",
+      });
+    });
+  </script>
+</body>
+</html>

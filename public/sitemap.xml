@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home -->
+  <url>
+    <loc>https://ghostconvert.dev/</loc>
+  </url>
+
+  <!-- Legal / info pages -->
+  <url>
+    <loc>https://ghostconvert.dev/privacy.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/terms.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/contact.html</loc>
+  </url>
+
+  <!-- Image tools -->
+  <url>
+    <loc>https://ghostconvert.dev/tools/png-to-jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/jpg-to-png.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/png-to-pdf.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/heic-to-jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/webp-to-jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/webp-to-png.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/compress-image.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/png-to-webp.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/jpg-to-webp.html</loc>
+  </url>
+
+  <!-- PDF tools -->
+  <url>
+    <loc>https://ghostconvert.dev/tools/pdf-to-jpg.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/compress-pdf.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/jpg-to-pdf.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/merge-pdf.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/split-pdf.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/delete-pdf-pages.html</loc>
+  </url>
+
+  <!-- Audio / video tools -->
+  <url>
+    <loc>https://ghostconvert.dev/tools/mp4-to-mp3.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/gif-to-mp4.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/mov-to-mp4.html</loc>
+  </url>
+  <url>
+    <loc>https://ghostconvert.dev/tools/gif-to-webp.html</loc>
+  </url>
+
+  <!-- Archive tools -->
+  <url>
+    <loc>https://ghostconvert.dev/tools/zip-extract.html</loc>
+  </url>
+</urlset>

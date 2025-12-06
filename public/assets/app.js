@@ -3,7 +3,6 @@
 /**
  * Generic tool handler for file upload + conversion + polling
  */
-
 async function handleToolPage(config) {
   const fileInput = document.querySelector("#file-input");
   const uploadArea = document.querySelector("#upload-area");
@@ -12,11 +11,58 @@ async function handleToolPage(config) {
   const statusText = document.querySelector("#status-text");
   const progressBar = document.querySelector("#progress-bar");
 
-  let selectedFile = null;
+  // Optional extra payload field (e.g. pages to delete)
+  const extraInput =
+    config && config.extraPayloadFieldId
+      ? document.querySelector(`#${config.extraPayloadFieldId}`)
+      : null;
+
+  // Multi-file tools
+  const MULTI_FILE_TOOLS = new Set([
+    "pdf:jpg-to-pdf",
+    "pdf:merge-pdf",
+    "pdf:png-to-pdf"   // <-- allow PNG→PDF to select multiple files
+  ]);
+  const isMultiFileTool = MULTI_FILE_TOOLS.has(config.tool);
+
+  if (fileInput && isMultiFileTool) {
+    fileInput.multiple = true;
+  }
+
+  let selectedFiles = [];
   let isConverting = false;
   const apiBase = "/api";
 
+  // ---- GA4 analytics helpers (safe if GCAnalytics not loaded) ----
+  const analytics = window.GCAnalytics || null;
+
+  function trackFileSelected(file) {
+    if (analytics && analytics.fileSelected) {
+      analytics.fileSelected(config.tool, file.name, file.size);
+    }
+  }
+
+  function trackConversionStarted() {
+    if (analytics && analytics.conversionStarted) {
+      analytics.conversionStarted(config.tool);
+    }
+  }
+
+  function trackConversionSuccess(outputRef) {
+    if (analytics && analytics.conversionSuccess) {
+      analytics.conversionSuccess(config.tool, outputRef);
+    }
+  }
+
+  function trackConversionFailed(message) {
+    if (analytics && analytics.conversionFailed) {
+      analytics.conversionFailed(config.tool, message);
+    }
+  }
+  // ----------------------------------------------------------------
+
   function setStatus(text, type = "info") {
+    if (!statusText) return;
     statusText.textContent = text;
     statusText.classList.remove("success", "error");
     if (type === "success") statusText.classList.add("success");
@@ -24,60 +70,100 @@ async function handleToolPage(config) {
   }
 
   function setProgress(value) {
+    if (!progressBar) return;
     progressBar.style.width = `${value}%`;
   }
 
-  function reset() {
-    isConverting = false;
-    setProgress(0);
-  }
-
-  function showFileName(file) {
+  function showFileNames(files) {
     if (!fileNameEl) return;
-    fileNameEl.textContent = file ? file.name : "";
+    if (!files || !files.length) {
+      fileNameEl.textContent = "";
+      return;
+    }
+
+    if (isMultiFileTool && files.length > 1) {
+      fileNameEl.textContent = `${files.length} files selected (first: ${files[0].name})`;
+    } else {
+      fileNameEl.textContent = files[0].name;
+    }
   }
 
   function handleDrop(e) {
     e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      selectedFile = file;
-      fileInput.files = e.dataTransfer.files;
-      showFileName(file);
-      setStatus("File ready. Click Convert to start.");
+    const dtFiles = e.dataTransfer.files;
+    if (!dtFiles || !dtFiles.length) return;
+
+    if (isMultiFileTool) {
+      selectedFiles = Array.from(dtFiles);
+    } else {
+      selectedFiles = [dtFiles[0]];
+    }
+
+    showFileNames(selectedFiles);
+    setStatus("File(s) ready. Click Convert to start.");
+
+    if (selectedFiles[0]) {
+      trackFileSelected(selectedFiles[0]);
     }
   }
 
   uploadArea?.addEventListener("click", () => fileInput?.click());
-  uploadArea?.addEventListener("dragover", (e) => {
-    e.preventDefault();
-  });
+  uploadArea?.addEventListener("dragover", (e) => e.preventDefault());
   uploadArea?.addEventListener("drop", handleDrop);
 
   fileInput?.addEventListener("change", () => {
-    const file = fileInput.files[0];
-    if (file) {
-      selectedFile = file;
-      showFileName(file);
-      setStatus("File ready. Click Convert to start.");
+    if (!fileInput.files || !fileInput.files.length) {
+      selectedFiles = [];
+      showFileNames([]);
+      return;
+    }
+
+    if (isMultiFileTool) {
+      selectedFiles = Array.from(fileInput.files);
+    } else {
+      selectedFiles = [fileInput.files[0]];
+    }
+
+    showFileNames(selectedFiles);
+    setStatus("File(s) ready. Click Convert to start.");
+
+    if (selectedFiles[0]) {
+      trackFileSelected(selectedFiles[0]);
     }
   });
 
   convertBtn?.addEventListener("click", async () => {
     if (isConverting) return;
-    if (!selectedFile) {
+    if (!selectedFiles.length) {
       setStatus("Please select a file first.", "error");
       return;
     }
 
     try {
       isConverting = true;
-      setStatus("Uploading file...");
+      setStatus("Uploading file(s)...");
       setProgress(10);
+      trackConversionStarted();
 
       const formData = new FormData();
-      formData.append("file", selectedFile);
+
+      if (isMultiFileTool) {
+        for (const f of selectedFiles) {
+          formData.append("file", f);
+        }
+      } else {
+        formData.append("file", selectedFiles[0]);
+      }
+
       formData.append("tool", config.tool);
+
+      if (extraInput) {
+        const raw = (extraInput.value || "").trim();
+        if (raw) {
+          const extraPayload = JSON.stringify({ pagesToDelete: raw });
+          formData.append("extraPayload", extraPayload);
+        }
+      }
 
       const res = await fetch(`${apiBase}/convert`, {
         method: "POST",
@@ -86,11 +172,13 @@ async function handleToolPage(config) {
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || "Upload failed");
+        const msg = err.error || "Upload failed";
+        trackConversionFailed(msg);
+        throw new Error(msg);
       }
 
       const { jobId } = await res.json();
-      setStatus("Processing file...");
+      setStatus("Processing file(s)...");
       setProgress(40);
 
       // Poll status
@@ -100,26 +188,61 @@ async function handleToolPage(config) {
       const poll = async () => {
         attempts++;
         const r = await fetch(`${apiBase}/status/${jobId}`);
-        if (!r.ok) throw new Error("Status check failed");
+        if (!r.ok) {
+          trackConversionFailed("Status check failed");
+          throw new Error("Status check failed");
+        }
 
         const data = await r.json();
         if (data.status === "completed" && data.downloadUrl) {
-          setStatus("Done! Download starting...", "success");
+          setStatus("Done! Download ready.", "success");
           setProgress(100);
-          window.location.href = data.downloadUrl;
+          trackConversionSuccess(data.downloadUrl);
+
+          // NEW: optional per-tool success hook
+          if (config && typeof config.onSuccess === "function") {
+            try {
+              config.onSuccess(data.downloadUrl);
+            } catch (hookErr) {
+              console.warn("onSuccess hook error:", hookErr);
+            }
+          }
+
+          // Default behavior (auto open + redirect) unless specifically disabled
+          if (!config || !config.preventAutoRedirect) {
+            try {
+              if (config.tool && config.tool.startsWith("pdf:")) {
+                // for PDF tools, try to open in a new tab first (helps iOS sheet)
+                window.open(
+                  data.downloadUrl,
+                  "_blank",
+                  "noopener,noreferrer"
+                );
+              }
+            } catch (openErr) {
+              console.warn("PDF auto-open failed:", openErr);
+            }
+
+            // existing redirect behavior
+            window.location.href = data.downloadUrl;
+          }
+
           isConverting = false;
           return;
         }
 
         if (data.status === "failed") {
-          throw new Error("Conversion failed");
+          const msg = data.error || "Conversion failed";
+          trackConversionFailed(msg);
+          throw new Error(msg);
         }
 
         if (attempts >= maxAttempts) {
-          throw new Error("Timed out waiting for conversion");
+          const msg = "Timed out waiting for conversion";
+          trackConversionFailed(msg);
+          throw new Error(msg);
         }
 
-        // simple fake progress
         const prog = 40 + Math.min(50, attempts * 2);
         setProgress(prog);
 
@@ -129,18 +252,24 @@ async function handleToolPage(config) {
       await poll();
     } catch (err) {
       console.error(err);
-      setStatus(err.message || "Something went wrong", "error");
+      const msg = err.message || "Something went wrong";
+      setStatus(msg, "error");
       setProgress(0);
+      trackConversionFailed(msg);
       isConverting = false;
     }
   });
 
-  // initial UI state
-  setStatus("Select or drop a file to get started.");
+  // Initial status text
+  setStatus(
+    isMultiFileTool
+      ? "Select or drop one or more files to get started."
+      : "Select or drop a file to get started."
+  );
 }
 
 /**
- * Home page navigation hook (optional)
+ * Home page hero button
  */
 document.addEventListener("DOMContentLoaded", () => {
   const heroPrimary = document.querySelector("#hero-primary-btn");
@@ -149,4 +278,19 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "/tools/png-to-jpg.html";
     });
   }
+
+  // Silence benign asset errors
+  window.addEventListener(
+    "error",
+    (e) => {
+      if (
+        e.target.tagName === "IMG" ||
+        e.target.tagName === "LINK" ||
+        e.target.tagName === "VIDEO"
+      ) {
+        e.stopImmediatePropagation();
+      }
+    },
+    true
+  );
 });

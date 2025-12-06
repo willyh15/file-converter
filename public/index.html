@@ -2,16 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>GhostConvert · Fast File Converters</title>
+  <title>GhostConvert · Free Online File Converter (JPG, PNG, PDF, MP4)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="GhostConvert is a fast, free online file converter. Convert PNG ↔ JPG, HEIC → JPG, JPG → PDF, merge, split, and delete PDF pages, MP4 ↔ MP3, ZIP tools, PDF compression and more. No login, no watermarks."
+  />
+  <link rel="canonical" href="https://ghostconvert.dev/" />
   <link rel="stylesheet" href="/assets/style.css" />
+
+  <!-- Google AdSense verification script -->
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1893531898786623"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GhostConvert · Free Online File Converter" />
+  <meta
+    property="og:description"
+    content="Fast, free online file conversion for images, video and PDFs. Convert JPG ↔ PNG, JPG ↔ WEBP, JPG → PDF, merge, split, and delete PDF pages, MP4 ↔ MP3 and more with no login or watermarks."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ghostconvert.dev/" />
+  <meta property="og:site_name" content="GhostConvert" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GhostConvert · Free Online File Converter" />
+  <meta
+    name="twitter:description"
+    content="Convert PNG, JPG, HEIC, WEBP, MP4 and PDF files online. JPG ↔ PNG, JPG ↔ WEBP, JPG → PDF, merge, split, and delete PDF pages and more."
+  />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2ZE1S86ZM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K2ZE1S86ZM');
+  </script>
+
+  <!-- GhostConvert Analytics Script -->
+  <script src="/assets/analytics.js" defer></script>
+
+  <!-- JSON-LD: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "GhostConvert",
+    "url": "https://ghostconvert.dev/",
+    "description": "Fast, free online file converter for images, video, and PDF documents, including JPG to PDF and PDF merge/split/delete tools.",
+    "inLanguage": "en"
+  }
+  </script>
 </head>
 <body>
   <main>
+    <!-- SIMPLE HEADER: logo + badge ONLY -->
     <header class="header">
-      <div class="logo">
+      <a href="/" class="logo">
         GHOST<span>CONVERT</span>
-      </div>
+      </a>
       <div class="badge">
         <span class="badge-dot"></span>
         <span>Fast · Free · No login</span>
@@ -21,39 +76,219 @@
     <section class="hero">
       <h1 class="hero-title">Convert files in seconds, not minutes.</h1>
       <p class="hero-subtitle">
-        PNG ↔ JPG, MP4 ↔ MP3, PDFs and more. No registration, no watermarks, no BS.
+        PNG ↔ JPG, HEIC → JPG, JPG → PDF, merge and split PDF files, delete PDF pages, MP4 ↔ MP3, GIF ↔ MP4, ZIP tools, image and PDF compression and more.
+        No registration, no watermarks, no hassle.
       </p>
       <div class="hero-actions">
         <button id="hero-primary-btn" class="hero-btn-primary">
           Start with PNG → JPG
         </button>
-        <button class="hero-btn-secondary" onclick="document.getElementById('tools').scrollIntoView({behavior: 'smooth'})">
+        <button
+          class="hero-btn-secondary"
+          onclick="document.getElementById('tools').scrollIntoView({behavior: 'smooth'})"
+        >
           Browse all tools
         </button>
       </div>
     </section>
 
+    <!-- TOOLS HIGH UP FOR ABOVE THE FOLD -->
     <section id="tools" class="tools-section">
       <div class="tools-grid-title">
         <h2 style="font-size: 1rem; margin: 0;">Popular converters</h2>
-        <span style="font-size: 0.8rem; color: #9ca3af;">More tools coming soon</span>
+        <span style="font-size: 0.8rem; color: #9ca3af;">Image, video and PDF tools in one place</span>
       </div>
+
       <div class="tools-grid">
+
         <a href="/tools/png-to-jpg.html" class="tool-card">
           <div class="tool-name">PNG → JPG</div>
           <div class="tool-meta">Optimize photos, thumbnails, previews</div>
         </a>
+
+        <a href="/tools/jpg-to-png.html" class="tool-card">
+          <div class="tool-name">JPG → PNG</div>
+          <div class="tool-meta">Great for graphics and logos</div>
+        </a>
+
+        <!-- NEW: PNG → PDF -->
+        <a href="/tools/png-to-pdf.html" class="tool-card">
+          <div class="tool-name">PNG → PDF</div>
+          <div class="tool-meta">Turn PNG images into clean PDFs</div>
+        </a>
+
+        <a href="/tools/heic-to-jpg.html" class="tool-card">
+          <div class="tool-name">HEIC → JPG</div>
+          <div class="tool-meta">Make iPhone photos shareable anywhere</div>
+        </a>
+
+        <a href="/tools/webp-to-jpg.html" class="tool-card">
+          <div class="tool-name">WEBP → JPG</div>
+          <div class="tool-meta">Make WEBP images compatible with all apps</div>
+        </a>
+
+        <!-- NEW: WEBP → PNG -->
+        <a href="/tools/webp-to-png.html" class="tool-card">
+          <div class="tool-name">WEBP → PNG</div>
+          <div class="tool-meta">Convert WEBP to logo-friendly PNG</div>
+        </a>
+
+        <a href="/tools/compress-image.html" class="tool-card">
+          <div class="tool-name">Compress Image</div>
+          <div class="tool-meta">Shrink JPG/PNG for web and email</div>
+        </a>
+
+        <a href="/tools/pdf-to-jpg.html" class="tool-card">
+          <div class="tool-name">PDF → JPG</div>
+          <div class="tool-meta">Create previews and thumbnails from PDFs</div>
+        </a>
+
+        <a href="/tools/compress-pdf.html" class="tool-card">
+          <div class="tool-name">Compress PDF</div>
+          <div class="tool-meta">Shrink PDFs for email and uploads</div>
+        </a>
+
+        <a href="/tools/jpg-to-pdf.html" class="tool-card">
+          <div class="tool-name">JPG → PDF</div>
+          <div class="tool-meta">Turn photos and scans into a single PDF</div>
+        </a>
+
+        <a href="/tools/merge-pdf.html" class="tool-card">
+          <div class="tool-name">Merge PDF</div>
+          <div class="tool-meta">Combine multiple PDFs into one file</div>
+        </a>
+
+        <a href="/tools/split-pdf.html" class="tool-card">
+          <div class="tool-name">Split PDF</div>
+          <div class="tool-meta">Extract pages into a new PDF</div>
+        </a>
+
+        <a href="/tools/delete-pdf-pages.html" class="tool-card">
+          <div class="tool-name">Delete PDF Pages</div>
+          <div class="tool-meta">Remove unwanted pages from a PDF</div>
+        </a>
+
         <a href="/tools/mp4-to-mp3.html" class="tool-card">
           <div class="tool-name">MP4 → MP3</div>
           <div class="tool-meta">Extract audio from videos</div>
         </a>
-        <!-- Add more as you build them -->
+
+        <a href="/tools/gif-to-mp4.html" class="tool-card">
+          <div class="tool-name">GIF → MP4</div>
+          <div class="tool-meta">Turn GIFs into smooth video</div>
+        </a>
+
+        <a href="/tools/zip-extract.html" class="tool-card">
+          <div class="tool-name">ZIP → Extract</div>
+          <div class="tool-meta">Unpack ZIP archives into files</div>
+        </a>
+
+        <a href="/tools/gif-to-webp.html" class="tool-card">
+          <div class="tool-name">GIF → WEBP</div>
+          <div class="tool-meta">Convert GIF animations to WEBP</div>
+        </a>
+
+        <a href="/tools/mov-to-mp4.html" class="tool-card">
+          <div class="tool-name">MOV → MP4</div>
+          <div class="tool-meta">Make MOV videos web-friendly MP4</div>
+        </a>
+
+        <!-- Existing NEW TOOLS -->
+        <a href="/tools/png-to-webp.html" class="tool-card">
+          <div class="tool-name">PNG → WEBP</div>
+          <div class="tool-meta">Compress PNG images to modern WEBP</div>
+        </a>
+
+        <a href="/tools/jpg-to-webp.html" class="tool-card">
+          <div class="tool-name">JPG → WEBP</div>
+          <div class="tool-meta">Make JPG photos smaller with WEBP</div>
+        </a>
+
       </div>
     </section>
 
+    <!-- HIGH-VALUE CONTENT: ABOUT + VALUE PROP -->
+    <section class="content-section" style="margin-top:24px;font-size:0.9rem;line-height:1.7;color:#9ca3af;">
+      <h2 style="font-size:1.15rem;color:#f9fafb;margin:0 0 8px;">What is GhostConvert?</h2>
+      <p style="margin:0 0 10px;">
+        GhostConvert is a lightweight, no nonsense file conversion toolkit for everyday use.
+        Many converters are overloaded with pop ups, logins, and confusing options.
+        GhostConvert focuses on the most common jobs people actually need:
+        shrinking PDFs for email, turning phone photos into web ready images,
+        converting JPG photos into clean PDFs, merging multiple PDFs into one,
+        splitting large PDFs into smaller sections, deleting extra PDF pages you do not need,
+        extracting audio from video, and making GIFs and ZIP files easier to handle.
+      </p>
+      <p style="margin:0 0 10px;">
+        The tools are designed to work well on slow connections, older laptops, and modern phones.
+        You do not need an account, you do not need to install anything, and you do not have to fight
+        through ads before you can download your file. You choose a file, pick your converter,
+        and GhostConvert handles the rest in a few seconds.
+      </p>
+
+      <h2 style="font-size:1.05rem;color:#f9fafb;margin:16px 0 8px;">Built for simple, repeatable workflows</h2>
+      <ul style="padding-left:18px;margin:0 0 8px;">
+        <li>Creators who need thumbnails, preview images, and smaller uploads.</li>
+        <li>Students sending assignments and scanned pages as a single PDF or just a few extracted pages.</li>
+        <li>People removing blank or extra pages from scans before sending them.</li>
+        <li>Small businesses preparing documents, invoices, and slide decks for clients.</li>
+        <li>Anyone who just wants a clean, fast way to convert, merge, split, or delete pages from a file without installing software.</li>
+      </ul>
+      <p style="margin:0;">
+        GhostConvert will keep growing over time with more formats and small quality of life features,
+        but the goal stays the same: clear tools, fast conversions, and a dark interface that
+        stays out of your way.
+      </p>
+    </section>
+
+    <!-- HOW IT WORKS: TEXT SECTION -->
+    <section class="content-section" style="margin-top:28px;font-size:0.9rem;line-height:1.7;color:#9ca3af;">
+      <h2 style="font-size:1.05rem;color:#f9fafb;margin:0 0 8px;">How file conversion works on GhostConvert</h2>
+      <ol style="padding-left:18px;margin:0 0 8px;">
+        <li>Pick the converter that matches what you need to do (for example PNG → JPG, JPG → PDF, Merge PDF, Split PDF, Delete PDF Pages, or MOV → MP4).</li>
+        <li>Drop your file into the upload box or tap to browse from your device.</li>
+        <li>GhostConvert processes the file using well known tools like ImageMagick, FFmpeg, and Ghostscript.</li>
+        <li>When processing is finished, you get a clean download link with no extra clutter.</li>
+      </ol>
+      <p style="margin:0;">
+        Files are handled for the sole purpose of conversion and are automatically cleaned up after a short period.
+        The focus is on reliable, everyday utilities rather than gimmicks, so you can return any time you need a
+        quick conversion job done.
+      </p>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="content-section" style="margin-top:28px;font-size:0.9rem;line-height:1.7;color:#9ca3af;">
+      <h2 style="font-size:1.05rem;color:#f9fafb;margin:0 0 8px;">Frequently asked questions</h2>
+
+      <h3 style="font-size:0.95rem;color:#e5e7eb;margin:10px 0 4px;">Is GhostConvert free to use?</h3>
+      <p style="margin:0 0 8px;">
+        Yes. GhostConvert is free for everyday file conversions. The site is supported by privacy friendly advertising from Google AdSense so that the tools can stay available without charging for basic use.
+      </p>
+
+      <h3 style="font-size:0.95rem;color:#e5e7eb;margin:10px 0 4px;">Do I need to create an account?</h3>
+      <p style="margin:0 0 8px;">
+        No account is required. You can open the site, choose a converter like JPG → PDF, Merge PDF, Split PDF, or Delete PDF Pages, upload a file, and download the result without signing up or sharing any extra details.
+      </p>
+
+      <h3 style="font-size:0.95rem;color:#e5e7eb;margin:10px 0 4px;">How are my files handled?</h3>
+      <p style="margin:0;">
+        Uploaded files are used only to create the converted output. They are stored temporarily while the conversion runs and are removed automatically after a short period as described in the privacy policy.
+      </p>
+    </section>
+
+    <!-- FOOTER: one block, links inline -->
     <footer class="footer">
-      Files are processed securely and automatically deleted after a short period.
-      This is a starter build — customize, extend, and ship.
+      <div>
+        Files are processed securely and automatically deleted after a short period.
+      </div>
+      <div style="margin-top: 0.35rem;">
+        <a href="/privacy.html">Privacy</a>
+        &nbsp;·&nbsp;
+        <a href="/terms.html">Terms</a>
+        &nbsp;·&nbsp;
+        <a href="/contact.html">Contact</a>
+      </div>
     </footer>
   </main>
 
